@@ -1,0 +1,9 @@
+name: pacbio
+channels:
+  - defaults
+  - bioconda
+dependencies:
+  - bioconda::pbgcpp=2.0.2
+  - bioconda::flye=2.8.1
+  - bioconda::raven-assembler=1.5.1
+  - bioconda::prokka=1.13.4
