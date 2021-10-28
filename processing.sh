@@ -204,6 +204,11 @@ mkdir cat_bc1011
 mv out.CAT.* cat_bc1011
 cd cat_bc1011/
 CAT add_names --force -i out.CAT.contig2classification.txt -o out.CAT.contig2classification.names.txt -t ~/refdb/cat_ref/CAT_prepare_20210107/2021-01-07_taxonomy/ --only_official
+# sumarize results
+cd cat_bc1009
+CAT summarise -i out.CAT.contig2classification.names.txt -o out.CAT.summary.txt -c ../bc1009/assembly.fasta
+cd ../cat_bc1011
+CAT summarise -i out.CAT.contig2classification.names.txt -o out.CAT.summary.txt -c ../bc1011/assembly.fasta
 
 #############
 # BIN CONTIGS
@@ -224,11 +229,7 @@ run_MaxBin.pl -contig bc1011/assembly.fasta -abund bbmap/bbmap_1011.stats -threa
 ###################################
 # ASSIGN TAXONOMY TO BINNED CONTIGS
 ###################################
-
-
-
-
-CAT bins --force --compress --sensitive -f 0.5 -b maxbin_bc1009/ -d ~/refdb/cat_ref/CAT_prepare_20210107/2021-01-07_CAT_database/ -t ~/refdb/cat_ref/CAT_prepare_20210107/2021-01-07_taxonomy/ -s .fasta
+CAT bins --force --compress --sensitive -f 0.5 -b maxbin/ -d ~/refdb/cat_ref/CAT_prepare_20210107/2021-01-07_CAT_database/ -t ~/refdb/cat_ref/CAT_prepare_20210107/2021-01-07_taxonomy/ -s .fasta
 CAT add_names --force -i out.BAT.bin2classification.txt -o out.BAT.bin2classification.names.txt -t ~/refdb/cat_ref/CAT_prepare_20210107/2021-01-07_taxonomy/ --only_official
 CAT summarise -i out.BAT.bin2classification.names.txt -o out.BAT.summary.txt
 
